@@ -9,5 +9,7 @@ cd ../TP-EveTools.Api/
 dotnet restore
 echo Restoring TP-EveTools.Api.ClientApp:
 cd ClientApp
-npm install
+setlocal
+call npm.cmd install
+endlocal
 cd ../../../scripts

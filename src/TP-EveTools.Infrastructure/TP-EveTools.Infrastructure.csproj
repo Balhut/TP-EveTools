@@ -5,4 +5,8 @@
     <RootNamespace>TP_EveTools.Infrastructure</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../TP-EveTools.Core/TP-EveTools.Core.csproj" />
+  </ItemGroup>
+
 </Project>
