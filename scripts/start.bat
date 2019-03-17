@@ -1,0 +1,1 @@
+dotnet run -p ../TP-EveTools.Api/TP-EveTools.Api.csproj
