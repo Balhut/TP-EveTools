@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Layout } from "./components/Layout";
+import { Route, Switch } from "react-router-dom";
 import { Home } from "./components/Home";
 import { FetchData } from "./components/FetchData";
+import NavBar from "./components/NavBar";
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App container">
-        <Layout>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/fetchdata" component={FetchData} />
-            </Switch>
-          </Router>
-        </Layout>
+      <div>
+        <NavBar />
+        <div className="App container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/fetchdata" component={FetchData} />
+          </Switch>
+        </div>
       </div>
     );
   }
