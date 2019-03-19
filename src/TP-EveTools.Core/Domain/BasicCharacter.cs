@@ -2,14 +2,14 @@ namespace TP_EveTools.Core.Domain
 {
     public class BasicCharacter
     {
-        public string Id { get; }
-        public string Name { get; }
+        public int id { get; }
+        public string name { get; }
 
-        protected BasicCharacter(){}
+        public BasicCharacter(){}
 
-        public BasicCharacter(string id, string name){
-            Id = id;
-            Name = name;
+        public BasicCharacter(int Id, string Name){
+            id = Id;
+            name = Name;
         }
 
     }

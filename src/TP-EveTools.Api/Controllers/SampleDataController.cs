@@ -20,6 +20,7 @@ namespace TP_EveTools.Api.Controllers
         {
             var rng = new Random();
             Test.kek();
+            Test.kek2();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
