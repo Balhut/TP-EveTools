@@ -9,4 +9,13 @@
     <ProjectReference Include="../TP-EveTools.Core/TP-EveTools.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
+    <PackageReference Include="RestSharp" Version="106.6.9" />
+    <PackageReference Include="shortid" Version="2.0.0" />
+  </ItemGroup>
+
 </Project>

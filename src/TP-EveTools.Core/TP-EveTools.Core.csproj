@@ -5,4 +5,8 @@
     <RootNamespace>TP_EveTools.Core</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="shortid" Version="2.0.0" />
+  </ItemGroup>
+
 </Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TP_EveTools.Infrastructure;
 
 namespace TP_EveTools.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace TP_EveTools.Api.Controllers
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {
             var rng = new Random();
+            Test.kek();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
