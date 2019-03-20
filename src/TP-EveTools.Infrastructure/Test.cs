@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using RestSharp;
 using TP_EveTools.Core.Domain;
+using TP_EveTools.Infrastructure.Extensions;
 
 namespace TP_EveTools.Infrastructure
 {
@@ -18,17 +19,11 @@ namespace TP_EveTools.Infrastructure
             Console.WriteLine(name);
             return response.Data;
         }
-        public static void kek2()
+        public static void kek2(HashSet<string> CharSet)
         {
             var client = new RestClient("https://esi.evetech.net");
             var request = new RestRequest("legacy/universe/ids/", Method.POST);
             request.AddHeader("Accept", "application/json");
-            var CharSet = new HashSet<string>{
-                "Velia Yaken",
-                "Day Ones",
-                "Morpion aka Darkflyy",
-                "Kuczmaczkwaczabdullahhhh"
-            };
             request.Parameters.Clear();
             var strJSONContent = Newtonsoft.Json.JsonConvert.SerializeObject(CharSet);
             Console.WriteLine();
@@ -56,6 +51,14 @@ namespace TP_EveTools.Infrastructure
             Console.WriteLine("=============================");
             Console.WriteLine();
             //return response.Data;
+        }
+
+        public static void testero(string str){
+            var characters = new HashSet<string>();
+            foreach(var name in str.SplitToLines()){
+                characters.Add(name);
+            }
+            kek2(characters);
         }
     }
 }

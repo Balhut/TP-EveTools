@@ -19,14 +19,20 @@ namespace TP_EveTools.Api.Controllers
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {
             var rng = new Random();
-            Test.kek();
-            Test.kek2();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]string command)
+        {
+            Test.testero(command);
+            //String[] myString = yourString.replace("<li>", "").Split(new string[] { "</li>" }, StringSplitOptions.RemoveEmptyEntries);
+            return Ok();
         }
 
         public class WeatherForecast
