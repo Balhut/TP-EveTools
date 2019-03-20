@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import DScanPage from "./pages/DScanPage";
+import "./App.css";
+
+import AddDScanPage from "./pages/AddDScanPage";
+import AddLocalScanPage from "./pages/AddLocalScanPage";
 import LocalScanPage from "./pages/LocalScanPage";
 import { Home } from "./components/Home";
 import { FetchData } from "./components/FetchData";
 import NavBar from "./components/NavBar";
-import "./App.css";
+
 
 class App extends Component {
   render() {
@@ -15,8 +18,10 @@ class App extends Component {
         <div className="App container">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/DScan" component={DScanPage} />
-            <Route path="/LocalScan" component={LocalScanPage} />
+            <Route path="/LocalScan/:id" component={LocalScanPage} />
+            <Route path="/DScan" component={AddDScanPage} />
+            <Route path="/LocalScan" component={AddLocalScanPage} />
+            
             <Route path="/fetchdata" component={FetchData} />
           </Switch>
         </div>

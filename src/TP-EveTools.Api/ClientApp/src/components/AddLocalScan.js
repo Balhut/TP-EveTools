@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ApiService from "../services/ApiService";
 import TextEditor from "./TextEditor";
 
-class DScan extends Component {
+class AddLocalScan extends Component {
   state = {
     postText: ""
   };
@@ -20,9 +20,7 @@ class DScan extends Component {
     const post = {
       content: this.state.postText
     };
-    this.apiService.addDScan(post);
-    //   .then(() => toast.success("P"))
-    //   .then(window.location.reload());
+    this.apiService.addLocalScan(post);
   };
 
   render() {
@@ -36,7 +34,7 @@ class DScan extends Component {
         <div id="text">
           <TextEditor
             onChange={this.onPostChange}
-            placeholder="Paste directional scan you copied in EVE..."
+            placeholder="Paste local scan you copied in EVE..."
           />
         </div>
       </div>
@@ -44,4 +42,4 @@ class DScan extends Component {
   }
 }
 
-export default DScan;
+export default AddLocalScan;

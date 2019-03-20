@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 
-import DScan from "../components/DScan";
+import AddLocalScan from "../components/AddLocalScan";
 
-class DScanPage extends Component {
+class AddLocalScanPage extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
       <div>
-        <DScan/>
+        <AddLocalScan/>
       </div>
     );
   }
 }
 
-export default DScanPage;
+export default AddLocalScanPage;

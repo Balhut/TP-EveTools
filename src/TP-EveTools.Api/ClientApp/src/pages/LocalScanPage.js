@@ -7,9 +7,10 @@ class LocalScanPage extends Component {
     super(props);
   }
   render() {
+    console.log("Page: " + this.props.match.params.id);
     return (
       <div>
-        <LocalScan/>
+        <LocalScan localscan={this.props.match.params.id} />
       </div>
     );
   }

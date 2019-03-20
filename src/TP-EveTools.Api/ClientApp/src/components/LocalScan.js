@@ -1,44 +1,24 @@
 import React, { Component } from "react";
 import ApiService from "../services/ApiService";
-import TextEditor from "./TextEditor";
 
 class LocalScan extends Component {
-  state = {
-    postText: ""
-  };
-
+    state = {
+        LocalScan = []
+    }
   constructor(props) {
     super(props);
     this.apiService = new ApiService();
   }
 
-  onPostChange = value => {
-    this.setState({ ...this.state, postText: value });
-  };
-
-  create = () => {
-    const post = {
-      content: this.state.postText
-    };
-    this.apiService.addLocalScan(post);
-  };
+  componentDidMount() {
+    this.apiService.getLocalScan(this.props.localscan).then(post => {
+      this.setState({ ...this.state, LocalScan });
+    });
+  }
 
   render() {
-    return (
-      <div>
-        <div id="top">
-          <button id="parse" className="button" onClick={this.create}>
-            <span>Parse</span>
-          </button>
-        </div>
-        <div id="text">
-          <TextEditor
-            onChange={this.onPostChange}
-            placeholder="Paste local scan you copied in EVE..."
-          />
-        </div>
-      </div>
-    );
+      console.log("Component: " + this.props.localscan);
+    return (<p>{this.props.localscan}</p>);
   }
 }
 
