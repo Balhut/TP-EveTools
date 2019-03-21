@@ -3,7 +3,7 @@ import ApiService from "../services/ApiService";
 
 class LocalScan extends Component {
     state = {
-        LocalScan = []
+        LocalScan: []
     }
   constructor(props) {
     super(props);

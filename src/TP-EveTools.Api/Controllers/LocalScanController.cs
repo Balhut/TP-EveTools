@@ -31,7 +31,7 @@ namespace TP_EveTools.Api.Controllers
             command.id = ShortId.Generate(true);
             await _commandDispatcher.DispatchAsync(command);
 
-            return Redirect($"/LocalScan/{command.id}");
+            return Redirect($"http://localhost:3000/LocalScan/{command.id}");
         }
     }
 }

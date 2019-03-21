@@ -30,7 +30,7 @@ namespace TP_EveTools.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]string command)
         {
-            Test.testero(command);
+            // Test.testero(command);
             //String[] myString = yourString.replace("<li>", "").Split(new string[] { "</li>" }, StringSplitOptions.RemoveEmptyEntries);
             return Ok();
         }

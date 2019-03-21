@@ -2,13 +2,13 @@ namespace TP_EveTools.Core.Domain
 {
     public class FormattedCharacter
     {
-        ComplexCharacter Character { get; }
+        BasicCharacter Character { get; }
         public string CorporationName { get; }
         public string AllianceName { get; }
 
         protected FormattedCharacter(){}
 
-        public FormattedCharacter(ComplexCharacter character, string corporationName, string allianceName){
+        public FormattedCharacter(BasicCharacter character, string corporationName, string allianceName){
             Character = character;
             CorporationName = corporationName;
             AllianceName = AllianceName;
