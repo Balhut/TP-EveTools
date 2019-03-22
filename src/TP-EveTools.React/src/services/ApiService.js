@@ -1,13 +1,13 @@
 class ApiService {
 
   getLocalScan(localScanId) {
-    return fetch(`http://localhost:5000/api/posts/${localScanId}`).then(resp =>
+    return fetch(`https://localhost:5001/api/LocalScan/${localScanId}`).then(resp =>
       resp.json()
     );
   }
 
   addLocalScan(post) {
-    return fetch("api/LocalScan", {
+    return fetch("https://localhost:5001/api/LocalScan", {
       method: "POST",
       redirect: "follow",
       headers: {
