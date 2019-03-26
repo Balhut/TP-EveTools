@@ -26,12 +26,13 @@ namespace TP_EveTools.Api.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody]AddLocalScan command)
+        public async Task<IActionResult> Post([FromBody]AddLocalScan command)
         {
             command.id = ShortId.Generate(true);
             await _commandDispatcher.DispatchAsync(command);
+            var obj = new{ id = command.id};
 
-            Response.Redirect($"http://localhost:3000/LocalScan/{command.id}");
+            return Json(obj);
         }
     }
 }

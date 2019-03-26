@@ -27,7 +27,7 @@ namespace TP_EveTools.Infrastructure.Handlers.LocalScan
                 charlist.Add(s);
             }
 
-            var localscan = EsiFetcher.ReturnFormattedLocalScan(EsiFetcher.ReturnBasicCharacters(charlist));
+            var localscan = EsiFetcher.ReturnFormattedLocalScan(EsiFetcher.ReturnBasicCharacters(charlist), command.id);
 
             await _localScanService.AddAsync(localscan);
         }

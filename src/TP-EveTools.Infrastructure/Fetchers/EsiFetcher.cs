@@ -64,7 +64,7 @@ namespace TP_EveTools.Infrastructure.Fetchers
             return ListOfChars;
         }
 
-        public static LocalScan ReturnFormattedLocalScan(HashSet<BasicCharacter> Characters)
+        public static LocalScan ReturnFormattedLocalScan(HashSet<BasicCharacter> Characters, string id)
         {
             var client = new RestClient("https://esi.evetech.net");
             var request = new RestRequest("latest/characters/affiliation/", Method.POST);
@@ -133,7 +133,7 @@ namespace TP_EveTools.Infrastructure.Fetchers
                 corporationCount.Add(cc);
             }
 
-            var ToReturn = new LocalScan(ShortId.Generate(), Characters, corporationCount, allianceCount);
+            var ToReturn = new LocalScan(id, Characters, corporationCount, allianceCount);
 
             return ToReturn;
         }

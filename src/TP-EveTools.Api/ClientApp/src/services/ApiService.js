@@ -1,22 +1,21 @@
 class ApiService {
-
   getLocalScan(localScanId) {
-    return fetch(`https://localhost:5001/api/LocalScan/${localScanId}`).then(resp =>
+    return fetch(`http://localhost:5000/api/posts/${localScanId}`).then(resp =>
       resp.json()
     );
   }
 
   addLocalScan(post) {
-    return fetch("https://localhost:5001/api/LocalScan", {
+    return fetch("api/LocalScan", {
       method: "POST",
-      redirect: "follow",
       headers: {
         "Content-type": "application/json"
       },
       body: JSON.stringify(post)
     })
-      .then(response => {
-        window.location.href = response.url;
+      .then(resp => resp.json())
+      .then(data => {
+        window.location.href = `LocalScan/${data.id}`
       })
       .catch(function(err) {
         console.info(err);

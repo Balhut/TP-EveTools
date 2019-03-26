@@ -20,7 +20,8 @@ class AddLocalScan extends Component {
     const post = {
       content: this.state.postText
     };
-    this.apiService.addLocalScan(post);
+    this.apiService
+      .addLocalScan(post);
   };
 
   render() {
