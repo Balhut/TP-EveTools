@@ -104,6 +104,7 @@ namespace TP_EveTools.Infrastructure.Fetchers
                 dict.Add(c, response2.Data.name);
                 var cc = new CorporationCount();
                 cc.CorpName = response2.Data.name;
+                cc.CorpId = c;
                 cc.CorpCount = 0;
                 corporationCount.Add(cc);
             }
@@ -115,6 +116,7 @@ namespace TP_EveTools.Infrastructure.Fetchers
                 dict.Add(a, response3.Data.name);
                 var ac = new AllianceCount();
                 ac.AllyName = response3.Data.name;
+                ac.AllyId = a;
                 ac.AllyCount = 0;
                 allianceCount.Add(ac);
             }
@@ -133,7 +135,15 @@ namespace TP_EveTools.Infrastructure.Fetchers
                 corporationCount.Add(cc);
             }
 
-            var ToReturn = new LocalScan(id, Characters, corporationCount, allianceCount);
+            var corpSorted = new HashSet<CorporationCount>();
+            foreach(var c in corporationCount.OrderByDescending(x => x.CorpCount)){
+                corpSorted.Add(c);
+            }
+            var allySorted = new HashSet<AllianceCount>();
+            foreach(var a in allianceCount.OrderByDescending(x => x.AllyCount)){
+                allySorted.Add(a);
+            }
+            var ToReturn = new LocalScan(id, Characters, corpSorted, allySorted);
 
             return ToReturn;
         }
