@@ -18,11 +18,12 @@ class Corporation extends Component {
   }
 
   static renderCorporationInfo(corporation, id) {
-    if (corporation.alliance_id != undefined) {
+    if (corporation.alliance_id !== undefined) {
       return (
         <div>
           <center>
             <img
+              alt="Logo"
               src={
                 "https://imageserver.eveonline.com/Corporation/" +
                 id +
@@ -30,6 +31,7 @@ class Corporation extends Component {
               }
             />
             <img
+              alt="Logo"
               src={
                 "https://imageserver.eveonline.com/Alliance/" +
                 corporation.alliance_id +
@@ -57,13 +59,14 @@ class Corporation extends Component {
                 <tr>
                   <td align="center">Alliance:</td>
                   <td align="center">
-                  <a
+                    <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href={"/alliance/" + corporation.alliance_id}
                     >
                       {corporation.alliance_id}
-                    </a> &nbsp;(
+                    </a>{" "}
+                    &nbsp;(
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
@@ -141,6 +144,7 @@ class Corporation extends Component {
         <div>
           <center>
             <img
+              alt="Logo"
               src={
                 "https://imageserver.eveonline.com/corporation/" +
                 id +

@@ -18,11 +18,12 @@ class Character extends Component {
   }
 
   static renderCharacterInfo(character, id) {
-    if (character.alliance_id != undefined) {
+    if (character.alliance_id !== undefined) {
       return (
         <div>
           <center>
             <img
+              alt="Characters avatar"
               src={
                 "https://imageserver.eveonline.com/Character/" + id + "_256.jpg"
               }
@@ -48,6 +49,15 @@ class Character extends Component {
                 <tr>
                   <td align="center">Corporation:</td>
                   <td align="center">
+                    <img
+                      alt="Logo"
+                      src={
+                        "https://imageserver.eveonline.com/Corporation/" +
+                        character.corporation_id +
+                        "_32.png"
+                      }
+                    />{" "}
+                    &nbsp;
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
@@ -73,6 +83,15 @@ class Character extends Component {
                 <tr>
                   <td align="center">Alliance:</td>
                   <td align="center">
+                    <img
+                      alt="Logo"
+                      src={
+                        "https://imageserver.eveonline.com/Alliance/" +
+                        character.alliance_id +
+                        "_32.png"
+                      }
+                    />{" "}
+                    &nbsp;
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
@@ -117,6 +136,7 @@ class Character extends Component {
         <div>
           <center>
             <img
+              alt="Characters avatar"
               src={
                 "https://imageserver.eveonline.com/Character/" + id + "_256.jpg"
               }
@@ -142,6 +162,15 @@ class Character extends Component {
                 <tr>
                   <td align="center">Corporation:</td>
                   <td align="center">
+                    <img
+                      alt="Logo"
+                      src={
+                        "https://imageserver.eveonline.com/Corporation/" +
+                        character.corporation_id +
+                        "_32.png"
+                      }
+                    />{" "}
+                    &nbsp;
                     <a
                       target="_blank"
                       rel="noopener noreferrer"

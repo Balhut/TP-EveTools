@@ -46,9 +46,7 @@ class LocalScan extends Component {
                           target="_blank"
                           rel="noopener noreferrer"
                           href={
-                            "https://zkillboard.com/character/" +
-                            ls.id +
-                            "/"
+                            "https://zkillboard.com/character/" + ls.id + "/"
                           }
                         >
                           &#187;
@@ -72,6 +70,15 @@ class LocalScan extends Component {
                   {localscan.corporationList.map(ls => (
                     <tr key={ls.corpId}>
                       <td>
+                        <img
+                          alt="Logo"
+                          src={
+                            "https://imageserver.eveonline.com/Corporation/" +
+                            ls.corpId +
+                            "_32.png"
+                          }
+                        />{" "}
+                        &nbsp;
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
@@ -112,6 +119,15 @@ class LocalScan extends Component {
                   {localscan.allianceList.map(ls => (
                     <tr key={ls.allyId}>
                       <td>
+                        <img
+                          alt="Logo"
+                          src={
+                            "https://imageserver.eveonline.com/Alliance/" +
+                            ls.allyId +
+                            "_32.png"
+                          }
+                        />{" "}
+                        &nbsp;
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
@@ -124,9 +140,7 @@ class LocalScan extends Component {
                           target="_blank"
                           rel="noopener noreferrer"
                           href={
-                            "https://zkillboard.com/alliance/" +
-                            ls.allyId +
-                            "/"
+                            "https://zkillboard.com/alliance/" + ls.allyId + "/"
                           }
                         >
                           &#187;
