@@ -14,11 +14,11 @@ class LocalScan extends Component {
       });
   }
 
-  static renderForecastsTable(forecasts) {
-    if (forecasts != null) {
+  static renderLocalScanTable(localscan) {
+    if (localscan != null) {
       return (
         <div>
-          <p align="center">Created at: {forecasts.createdAt}</p>
+          <p align="center">Created at: {localscan.createdAt}</p>
           <div id="wrapper">
             <div id="c1">
               <h3 align="center">Characters</h3>
@@ -30,15 +30,15 @@ class LocalScan extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {forecasts.characterList.map(forecast => (
-                    <tr key={forecast.id}>
+                  {localscan.characterList.map(ls => (
+                    <tr key={ls.id}>
                       <td>
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href={"/character/" + forecast.id}
+                          href={"/character/" + ls.id}
                         >
-                          {forecast.name}
+                          {ls.name}
                         </a>
                       </td>
                       <td align="center">
@@ -47,12 +47,11 @@ class LocalScan extends Component {
                           rel="noopener noreferrer"
                           href={
                             "https://zkillboard.com/character/" +
-                            forecast.id +
+                            ls.id +
                             "/"
                           }
                         >
-                          {" "}
-                          &#187;{" "}
+                          &#187;
                         </a>
                       </td>
                     </tr>
@@ -70,15 +69,15 @@ class LocalScan extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {forecasts.corporationList.map(forecast => (
-                    <tr key={forecast.corpId}>
+                  {localscan.corporationList.map(ls => (
+                    <tr key={ls.corpId}>
                       <td>
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href={"/corporation/" + forecast.corpId}
+                          href={"/corporation/" + ls.corpId}
                         >
-                          {forecast.corpName}
+                          {ls.corpName}
                         </a>
                         &nbsp;(
                         <a
@@ -86,7 +85,7 @@ class LocalScan extends Component {
                           rel="noopener noreferrer"
                           href={
                             "https://zkillboard.com/corporation/" +
-                            forecast.corpId +
+                            ls.corpId +
                             "/"
                           }
                         >
@@ -94,7 +93,7 @@ class LocalScan extends Component {
                         </a>
                         )
                       </td>
-                      <td>{forecast.corpCount}</td>
+                      <td>{ls.corpCount}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -110,15 +109,15 @@ class LocalScan extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {forecasts.allianceList.map(forecast => (
-                    <tr key={forecast.allyId}>
+                  {localscan.allianceList.map(ls => (
+                    <tr key={ls.allyId}>
                       <td>
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href={"/alliance/" + forecast.allyId}
+                          href={"/alliance/" + ls.allyId}
                         >
-                          {forecast.allyName}
+                          {ls.allyName}
                         </a>
                         &nbsp;(
                         <a
@@ -126,7 +125,7 @@ class LocalScan extends Component {
                           rel="noopener noreferrer"
                           href={
                             "https://zkillboard.com/alliance/" +
-                            forecast.allyId +
+                            ls.allyId +
                             "/"
                           }
                         >
@@ -134,7 +133,7 @@ class LocalScan extends Component {
                         </a>
                         )
                       </td>
-                      <td>{forecast.allyCount}</td>
+                      <td>{ls.allyCount}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -150,11 +149,11 @@ class LocalScan extends Component {
 
   render() {
     let contents = this.state.loading ? (
-      <p>
-        <em align="center">Loading...</em>
+      <p align="center">
+        <em>Loading...</em>
       </p>
     ) : (
-      LocalScan.renderForecastsTable(this.state.localscan)
+      LocalScan.renderLocalScanTable(this.state.localscan)
     );
 
     return (

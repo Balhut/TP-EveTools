@@ -4,6 +4,12 @@
   padding-right: 50%;
 }
 
+#char_tab{
+    padding-top: 10px;
+    padding-right: 30%;
+    padding-left: 30%;
+}
+
 .right{
   right: 0px;
 }
