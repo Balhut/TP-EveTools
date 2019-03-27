@@ -5,7 +5,6 @@ import TextEditor from "./TextEditor";
 class AddLocalScan extends Component {
   state = {
     postText: "",
-    sending: false,
     btnText: "Parse"
   };
 
@@ -19,7 +18,6 @@ class AddLocalScan extends Component {
   };
 
   create = () => {
-    this.setState({...this.state, sending: true});
     this.setState({...this.state, btnText: "Parsing..."});
     const post = {
       content: this.state.postText
@@ -28,14 +26,12 @@ class AddLocalScan extends Component {
   };
 
   render() {
-    const submitDisabled = this.state.sending;
     return (
       <div>
         <div id="top">
           <button
             id="parse"
             className="button"
-            disabled={submitDisabled}
             onClick={this.create}
           >
             <span>{this.state.btnText}</span>
