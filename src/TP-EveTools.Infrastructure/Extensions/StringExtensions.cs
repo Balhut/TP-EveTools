@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TP_EveTools.Core.Domain;
 
 namespace TP_EveTools.Infrastructure.Extensions
 {
@@ -20,7 +21,5 @@ namespace TP_EveTools.Infrastructure.Extensions
                 }
             }
         }
-
-        
     }
 }

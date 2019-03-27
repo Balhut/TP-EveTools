@@ -4,7 +4,8 @@ import TextEditor from "./TextEditor";
 
 class AddDScan extends Component {
   state = {
-    postText: ""
+    postText: "",
+    btnText: "Parse"
   };
 
   constructor(props) {
@@ -17,20 +18,23 @@ class AddDScan extends Component {
   };
 
   create = () => {
+    this.setState({...this.state, btnText: "Parsing..."});
     const post = {
       content: this.state.postText
     };
     this.apiService.addDScan(post);
-    //   .then(() => toast.success("P"))
-    //   .then(window.location.reload());
   };
 
   render() {
     return (
       <div>
         <div id="top">
-          <button id="parse" className="button" onClick={this.create}>
-            <span>Parse</span>
+          <button
+            id="parse"
+            className="button"
+            onClick={this.create}
+          >
+            <span>{this.state.btnText}</span>
           </button>
         </div>
         <div id="text">

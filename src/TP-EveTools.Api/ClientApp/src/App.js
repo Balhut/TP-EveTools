@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar";
 import CharacterPage from "./pages/CharacterPage";
 import CorporationPage from "./pages/CorporationPage";
 import AlliancePage from "./pages/AlliancePage";
+import DScanPage from "./pages/DScanPage";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/LocalScan/:id" component={LocalScanPage} />
+            <Route path="/DScan/:id" component={DScanPage} />
             <Route path="/DScan" component={AddDScanPage} />
             <Route path="/LocalScan" component={AddLocalScanPage} />
             <Route path="/character/:id" component={CharacterPage} />

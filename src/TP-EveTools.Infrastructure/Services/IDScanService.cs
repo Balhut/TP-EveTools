@@ -6,7 +6,6 @@ namespace TP_EveTools.Infrastructure.Services
     public interface IDScanService : IService
     {
          Task<DScan> GetAsync(string Id);
-         Task<DScan> AddAsync(DScan ds);
-         Task<DScan> RefreshAsync(DScan ds);
+         Task AddAsync(DScan ds);
     }
 }

@@ -20,10 +20,5 @@ namespace TP_EveTools.Infrastructure.Services
         {
             return await _localScanRepository.GetAsync(Id);
         }
-
-        public async Task RefreshAsync(LocalScan ls)
-        {
-            await _localScanRepository.RefreshAsync(ls);
-        }
     }
 }

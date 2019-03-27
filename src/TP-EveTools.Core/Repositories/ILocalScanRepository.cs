@@ -7,6 +7,5 @@ namespace TP_EveTools.Core.Repositories
     {
         Task<LocalScan> GetAsync(string id);
         Task AddAsync(LocalScan ls);
-        Task RefreshAsync(LocalScan ls);
     }
 }

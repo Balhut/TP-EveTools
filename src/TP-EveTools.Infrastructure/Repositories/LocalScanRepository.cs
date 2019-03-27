@@ -24,8 +24,5 @@ namespace TP_EveTools.Infrastructure.Repositories
 
         public async Task<LocalScan> GetAsync(string id)
             => await LocalScans.AsQueryable().FirstOrDefaultAsync(x => x.id == id);
-
-        public async Task RefreshAsync(LocalScan ls)
-            => await LocalScans.ReplaceOneAsync(x => x.id == ls.id, ls);
     }
 }
