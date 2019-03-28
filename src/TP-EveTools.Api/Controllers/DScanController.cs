@@ -31,6 +31,7 @@ namespace TP_EveTools.Api.Controllers
         {
             command.id = ShortId.Generate(true);
             await _commandDispatcher.DispatchAsync(command);
+
             var obj = new { id = command.id };
 
             return Json(obj);

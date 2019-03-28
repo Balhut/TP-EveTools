@@ -16,15 +16,92 @@ class DScan extends Component {
 
   static renderDScanTable(dscan) {
     if (dscan != null) {
-        return (
-            <div>
-                <o>Dscan</o>
+      return (
+        <div>
+          <h2 align="center">System: {dscan.systemName}</h2>
+          <p align="center">Created at: {dscan.createdAt}</p>
+          <div id="wrapper">
+            <div id="c1">
+              <h3 align="center">Ships&Structures</h3>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {dscan.ships.map(ship => (
+                    <tr key={ship.name}>
+                      <td>{ship.name}</td>
+                      <td align="center">{ship.count}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-        );
-    }
-    else
-    {
-        return <p>Directional Scan does not exist.</p>;
+            <div id="c2">
+              <h3 align="center">Types</h3>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {dscan.types.map(type => (
+                    <tr key={type.name}>
+                      <td>{type.name}</td>
+                      <td align="center">{type.count}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div id="c3">
+              <h3 align="center">Classes</h3>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Class</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {dscan.classes.map(cls => (
+                    <tr key={cls.name}>
+                      <td>{cls.name}</td>
+                      <td align="center">{cls.count}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div id="c4">
+              <h3 align="center">Notables</h3>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th id="centered">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dscan.interestingTargets.map(notable => (
+                    <tr key={notable.name}>
+                      <td>{notable.name}</td>
+                      <td align="center">{notable.type}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return <p>Directional Scan does not exist.</p>;
     }
   }
 
@@ -44,6 +121,5 @@ class DScan extends Component {
       </div>
     );
   }
-
 }
 export default DScan;

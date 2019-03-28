@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace TP_EveTools.Core.Domain
@@ -9,10 +10,11 @@ namespace TP_EveTools.Core.Domain
         public HashSet<ShipCount> Ships { get; set; }
         public HashSet<TypeCount> Types { get; set; }
         public HashSet<ClassCount> Classes { get; set; }
-        public HashSet<Ship> InterestingTargets { get; set; }
+        public List<Ship> InterestingTargets { get; set; }
+        public DateTime createdAt { get; set; }
 
         public DScan(){
-            SystemName = "Unknown";
+            createdAt = DateTime.UtcNow;
         }
     }
 }
