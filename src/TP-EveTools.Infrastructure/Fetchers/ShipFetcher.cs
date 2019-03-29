@@ -367,7 +367,14 @@ namespace TP_EveTools.Infrastructure.Fetchers
             {"'Horizon' Fortizar", "Faction Citadel"},
             {"'Moreau' Fortizar", "Faction Citadel"},
             {"'Marginis' Fortizar", "Faction Citadel"},
-            {"'Prometheus' Fortizar", "Faction Citadel"}
+            {"'Prometheus' Fortizar", "Faction Citadel"},
+            {"Capsule", "Capsule"},
+            {"Capsule - Genolution 'Auroral' 197-variant", "Capsule"},
+            {"Sisters Combat Scanner Probe", "Combat Scanner Probe"},
+            {"Combat Scanner Probe I", "Combat Scanner Probe"},
+            {"Sisters Core Scanner Probe", "Core Scanner Probe"},
+            {"RSS Core Scanner Probe", "Core Scanner Probe"},
+            {"Core Scanner Probe I", "Core Scanner Probe"}
             };
 
         private static Dictionary<string, string> ClassOfShip = new Dictionary<string, string>{
@@ -445,7 +452,10 @@ namespace TP_EveTools.Infrastructure.Fetchers
             {"Citadel", "Upwell Structure"},
             {"Engineering Complex", "Upwell Structure"},
             {"Refinery", "Upwell Structure"},
-            {"Faction Citadel", "Upwell Structure"}
+            {"Faction Citadel", "Upwell Structure"},
+            {"Capsule", "Capsule"},
+            {"Combat Scanner Probe", "Scanner Probe"},
+            {"Core Scanner Probe", "Scanner Probe"}
             };
 
         public static Ship ReturnShip(string name){
