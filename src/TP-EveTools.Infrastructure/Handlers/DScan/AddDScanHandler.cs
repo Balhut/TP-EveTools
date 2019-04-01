@@ -115,62 +115,81 @@ namespace TP_EveTools.Infrastructure.Handlers.DScan
             var uniqueClasses = new HashSet<string>();
             var interestingTargets = new HashSet<Ship>();
             string sysName = "";
+            int ctr = 0;
 
-            var DScanLines = FormatRawHtmlTextString(command.content);
-
-            var entries = SeparateDScanColumnsByTabs(DScanLines);
-
-            sysName = CheckForSystemName(entries);
-
-            foreach (var entry in entries)
+            if (command.content != "")
             {
-                var ship = ShipFetcher.ReturnShip(entry[2]);
-                if (ship.Type != "Unknown")
+                var DScanLines = FormatRawHtmlTextString(command.content);
+
+                var entries = SeparateDScanColumnsByTabs(DScanLines);
+
+                sysName = CheckForSystemName(entries);
+
+                foreach (var entry in entries)
                 {
-                    shipList.Add(ship);
-                    uniqueShips.Add(ship.Name);
-                    uniqueClasses.Add(ship.Class);
-                    uniqueTypes.Add(ship.Type);
-                }
-                if (interestingTargets.FirstOrDefault(x => x.Name == ship.Name) == null)
-                {
-                    if (ship.Class == "Unique" || ship.Type == "Combat Scanner Probe")
+                    var ship = ShipFetcher.ReturnShip(entry[2]);
+                    if (ship.Type != "Unknown")
                     {
-                        interestingTargets.Add(ship);
+                        shipList.Add(ship);
+                        uniqueShips.Add(ship.Name);
+                        uniqueClasses.Add(ship.Class);
+                        uniqueTypes.Add(ship.Type);
+                    }
+                    if (interestingTargets.FirstOrDefault(x => x.Name == ship.Name) == null)
+                    {
+                        if (ship.Class == "Unique" || ship.Type == "Combat Scanner Probe")
+                        {
+                            interestingTargets.Add(ship);
+                            ctr++;
+                        }
                     }
                 }
+
+                var shipCount = PrepareSetForCounting(uniqueShips);
+                var typeCount = PrepareSetForCounting(uniqueTypes);
+                var classCount = PrepareSetForCounting(uniqueClasses);
+
+                foreach (var ship in shipList)
+                {
+                    var sc = shipCount.FirstOrDefault(x => x.Name == ship.Name);
+                    var tc = typeCount.FirstOrDefault(x => x.Name == ship.Type);
+                    var cc = classCount.FirstOrDefault(x => x.Name == ship.Class);
+
+                    sc.Count += 1;
+                    tc.Count += 1;
+                    cc.Count += 1;
+                }
+
+                var sortedSC = SortSet(shipCount);
+                var sortedTC = SortSet(typeCount);
+                var sortedCC = SortSet(classCount);
+
+                var dscan = new TP_EveTools.Core.Domain.DScan
+                {
+                    id = command.id,
+                    SystemName = sysName,
+                    Ships = sortedSC,
+                    Types = sortedTC,
+                    Classes = sortedCC,
+                };
+                if (ctr != 0)
+                {
+                    dscan.InterestingTargets = interestingTargets;
+                }
+
+                await _dScanService.AddAsync(dscan);
+            }
+            else
+            {
+                var dscan = new TP_EveTools.Core.Domain.DScan
+                {
+                    id = command.id,
+                    SystemName = "Unknown"
+                };
+                await _dScanService.AddAsync(dscan);
             }
 
-            var shipCount = PrepareSetForCounting(uniqueShips);
-            var typeCount = PrepareSetForCounting(uniqueTypes);
-            var classCount = PrepareSetForCounting(uniqueClasses);
 
-            foreach (var ship in shipList)
-            {
-                var sc = shipCount.FirstOrDefault(x => x.Name == ship.Name);
-                var tc = typeCount.FirstOrDefault(x => x.Name == ship.Type);
-                var cc = classCount.FirstOrDefault(x => x.Name == ship.Class);
-
-                sc.Count += 1;
-                tc.Count += 1;
-                cc.Count += 1;
-            }
-
-            var sortedSC = SortSet(shipCount);
-            var sortedTC = SortSet(typeCount);
-            var sortedCC = SortSet(classCount);
-
-            var dscan = new TP_EveTools.Core.Domain.DScan
-            {
-                id = command.id,
-                SystemName = sysName,
-                Ships = sortedSC,
-                Types = sortedTC,
-                Classes = sortedCC,
-                InterestingTargets = interestingTargets
-            };
-
-            await _dScanService.AddAsync(dscan);
         }
     }
 }
