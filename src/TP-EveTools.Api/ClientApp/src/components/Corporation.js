@@ -148,7 +148,7 @@ class Corporation extends Component {
               src={
                 "https://imageserver.eveonline.com/corporation/" +
                 id +
-                "_256.jpg"
+                "_128.png"
               }
             />
           </center>

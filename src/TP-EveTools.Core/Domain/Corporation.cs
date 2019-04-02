@@ -11,7 +11,7 @@ namespace TP_EveTools.Core.Domain
         public string description { get; set; }
         public int home_station_id { get; set; }
         public int member_count { get; set; }
-        public string name { get; set; }
+        public string corporation_name { get; set; }
         public int shares { get; set; }
         public int tax_rate { get; set; }
         public string ticker { get; set; }

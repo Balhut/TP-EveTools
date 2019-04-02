@@ -78,18 +78,19 @@ namespace TP_EveTools.Infrastructure.Fetchers
             }
             var strJSONContent = Newtonsoft.Json.JsonConvert.SerializeObject(Ids);
             request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-            var response = client.Execute(request);
-            dynamic affiliations = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
+            //var response = client.Execute(request);
+            var response = await client.PostAsync<List<ComplexCharacter>>(request);
+            //dynamic affiliations = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
 
             var ListOfAllianceIds = new HashSet<int>();
             var ListOfCorporationIds = new HashSet<int>();
-            foreach (var a in affiliations)
+            foreach (var a in response)
             {
-                if (a.alliance_id != null)
+                if (a.alliance_id != 0)
                     ListOfAllianceIds.Add(Convert.ToInt32(a.alliance_id));
                 ListOfCorporationIds.Add(Convert.ToInt32(a.corporation_id));
             }
-            var request2 = new RestRequest("latest/corporations/{id}", Method.GET);
+            var request2 = new RestRequest("legacy/corporations/{id}", Method.GET);
             var request3 = new RestRequest("latest/alliances/{id}", Method.GET);
 
             var allianceCount = new HashSet<AllianceCount>();
@@ -105,10 +106,10 @@ namespace TP_EveTools.Infrastructure.Fetchers
                     request2.Parameters.Clear();
                     request2.AddUrlSegment("id", c);
                     var response2 = await client.GetAsync<Corporation>(request2);
-                    Console.WriteLine(response2.name + ": " + c);
-                    dict.Add(c, response2.name);
+                    Console.WriteLine(response2.corporation_name + ": " + c);
+                    dict.Add(c, response2.corporation_name);
                     var cc = new CorporationCount();
-                    cc.CorpName = response2.name;
+                    cc.CorpName = response2.corporation_name;
                     cc.CorpId = c;
                     cc.CorpCount = 0;
                     corporationCount.Add(cc);
@@ -140,11 +141,11 @@ namespace TP_EveTools.Infrastructure.Fetchers
 
             }
 
-            foreach (var a in affiliations)
+            foreach (var a in response)
             {
                 try
                 {
-                    if (a.alliance_id != null)
+                    if (a.alliance_id != 0)
                     {
                         var ac = allianceCount.FirstOrDefault(x => x.AllyName == dict[Convert.ToInt32(a.alliance_id)]);
                         ac.AllyCount++;

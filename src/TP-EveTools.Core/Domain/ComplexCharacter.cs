@@ -16,7 +16,9 @@ namespace TP_EveTools.Core.Domain
         public int race_id { get; set; }
         public float security_status { get; set; }
 
-        public ComplexCharacter() { }
+        public ComplexCharacter() {
+            alliance_id = 0;
+         }
 
         public ComplexCharacter(int Alliance_id, int Ancestry_id, DateTime Birthday,
             int Bloodline_id, int Corporation_id, string Description, int Faction_id,
