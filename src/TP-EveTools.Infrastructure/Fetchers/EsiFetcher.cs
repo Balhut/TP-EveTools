@@ -6,6 +6,7 @@ using TP_EveTools.Core.Domain;
 using TP_EveTools.Infrastructure.Extensions;
 using shortid;
 using TP_EveTools.Infrastructure.DTO;
+using System.Threading.Tasks;
 
 namespace TP_EveTools.Infrastructure.Fetchers
 {
@@ -45,7 +46,7 @@ namespace TP_EveTools.Infrastructure.Fetchers
 
             return ToReturn;
         }
-        
+
         public static HashSet<BasicCharacter> ReturnBasicCharacters(HashSet<string> CharSet)
         {
             var client = new RestClient("https://esi.evetech.net");
@@ -64,7 +65,7 @@ namespace TP_EveTools.Infrastructure.Fetchers
             return ListOfChars;
         }
 
-        public static LocalScan ReturnFormattedLocalScan(HashSet<BasicCharacter> Characters, string id)
+        public static async Task<LocalScan> ReturnFormattedLocalScan(HashSet<BasicCharacter> Characters, string id)
         {
             var client = new RestClient("https://esi.evetech.net");
             var request = new RestRequest("latest/characters/affiliation/", Method.POST);
@@ -98,49 +99,73 @@ namespace TP_EveTools.Infrastructure.Fetchers
 
             foreach (var c in ListOfCorporationIds)
             {
-                request2.Parameters.Clear();
-                request2.AddUrlSegment("id", c);
-                var response2 = client.Execute<Corporation>(request2);
-                dict.Add(c, response2.Data.name);
-                var cc = new CorporationCount();
-                cc.CorpName = response2.Data.name;
-                cc.CorpId = c;
-                cc.CorpCount = 0;
-                corporationCount.Add(cc);
+                try
+                {
+                    Console.WriteLine("New corp..." + " " + c);
+                    request2.Parameters.Clear();
+                    request2.AddUrlSegment("id", c);
+                    var response2 = await client.GetAsync<Corporation>(request2);
+                    Console.WriteLine(response2.name + ": " + c);
+                    dict.Add(c, response2.name);
+                    var cc = new CorporationCount();
+                    cc.CorpName = response2.name;
+                    cc.CorpId = c;
+                    cc.CorpCount = 0;
+                    corporationCount.Add(cc);
+                }
+                catch
+                {
+                    continue;
+                }
+
             }
             foreach (var a in ListOfAllianceIds)
             {
-                request3.Parameters.Clear();
-                request3.AddUrlSegment("id", a);
-                var response3 = client.Execute<AllianceDTO>(request3);
-                dict.Add(a, response3.Data.name);
-                var ac = new AllianceCount();
-                ac.AllyName = response3.Data.name;
-                ac.AllyId = a;
-                ac.AllyCount = 0;
-                allianceCount.Add(ac);
+                try
+                {
+                    request3.Parameters.Clear();
+                    request3.AddUrlSegment("id", a);
+                    var response3 = await client.GetAsync<AllianceDTO>(request3);
+                    dict.Add(a, response3.name);
+                    var ac = new AllianceCount();
+                    ac.AllyName = response3.name;
+                    ac.AllyId = a;
+                    ac.AllyCount = 0;
+                    allianceCount.Add(ac);
+                }
+                catch
+                {
+                    continue;
+                }
+
             }
 
             foreach (var a in affiliations)
             {
-                if(a.alliance_id != null){
-                    var ac = allianceCount.FirstOrDefault(x=> x.AllyName == dict[Convert.ToInt32(a.alliance_id)]);
-                    allianceCount.Remove(ac);
-                    ac.Increase();
-                    allianceCount.Add(ac);
+                try
+                {
+                    if (a.alliance_id != null)
+                    {
+                        var ac = allianceCount.FirstOrDefault(x => x.AllyName == dict[Convert.ToInt32(a.alliance_id)]);
+                        ac.AllyCount++;
+                    }
+                    var cc = corporationCount.FirstOrDefault(x => x.CorpName == dict[Convert.ToInt32(a.corporation_id)]);
+                    cc.CorpCount++;
                 }
-                var cc = corporationCount.FirstOrDefault(x=> x.CorpName == dict[Convert.ToInt32(a.corporation_id)]);
-                corporationCount.Remove(cc);
-                cc.CorpCount++;
-                corporationCount.Add(cc);
+                catch
+                {
+                    continue;
+                }
             }
 
             var corpSorted = new HashSet<CorporationCount>();
-            foreach(var c in corporationCount.OrderByDescending(x => x.CorpCount)){
+            foreach (var c in corporationCount.OrderByDescending(x => x.CorpCount))
+            {
                 corpSorted.Add(c);
             }
             var allySorted = new HashSet<AllianceCount>();
-            foreach(var a in allianceCount.OrderByDescending(x => x.AllyCount)){
+            foreach (var a in allianceCount.OrderByDescending(x => x.AllyCount))
+            {
                 allySorted.Add(a);
             }
             var ToReturn = new LocalScan(id, Characters, corpSorted, allySorted);
