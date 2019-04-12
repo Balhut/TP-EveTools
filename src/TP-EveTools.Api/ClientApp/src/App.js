@@ -12,13 +12,14 @@ import CharacterPage from "./pages/CharacterPage";
 import CorporationPage from "./pages/CorporationPage";
 import AlliancePage from "./pages/AlliancePage";
 import DScanPage from "./pages/DScanPage";
+import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
-        <div className="App container">
+        <div id="content" className="App container">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/LocalScan/:id" component={LocalScanPage} />
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/fetchdata" component={FetchData} />
           </Switch>
         </div>
+        <Footer />
       </div>
     );
   }

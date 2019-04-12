@@ -1,51 +1,59 @@
-
-#text{
+#text {
   padding-top: 20px;
   padding-right: 50%;
 }
 
-#char_tab{
-    padding-top: 10px;
-    padding-right: 30%;
-    padding-left: 30%;
+#char_tab {
+  padding-top: 10px;
+  padding-right: 30%;
+  padding-left: 30%;
 }
 
-.right{
+.right {
   right: 0px;
 }
 
 #centered {
-  text-align: center;   
+  text-align: center;
 }
 
-.textEditor{
+#content {
+  padding-top: 1%;
+}
+
+.copyright {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #ffffff;
+}
+
+.textEditor {
   min-height: 300px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#top{
+#top {
   padding-top: 15px;
 }
 
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#wrapper{
-  display:-webkit-flex;
-  -webkit-justify-content:center;
+#wrapper {
+  display: -webkit-flex;
+  -webkit-justify-content: center;
 
-  display:flex;
-  justify-content:center;
-
+  display: flex;
+  justify-content: center;
 }
 
-#wrapper div{
-  -webkit-flex:1;
-  flex:1;
-  border:thin solid #777;
-
+#wrapper div {
+  -webkit-flex: 1;
+  flex: 1;
+  border: thin solid #777;
 }
 
 .button {
@@ -53,7 +61,7 @@
   border-radius: 8px;
   background-color: lightseagreen;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-size: 16px;
   padding: 10px 30px;
@@ -70,7 +78,7 @@
 }
 
 .button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
